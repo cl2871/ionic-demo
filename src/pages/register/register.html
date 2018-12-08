@@ -1,0 +1,32 @@
+<ion-content padding>
+  <form [formGroup]="registerForm" (submit)="register()" novalidate>
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="email" 
+      placeholder="Your email address" 
+      [class.invalid]="!registerForm.controls.email.valid && blur">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!registerForm.controls.email.valid  
+    && registerForm.controls.email.touched">
+      <p>Please enter a valid email.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input formControlName="password" type="password" 
+      placeholder="Your password" 
+      [class.invalid]="!registerForm.controls.password.valid && blur">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" 
+    *ngIf="!registerForm.controls.password.valid  && 
+    registerForm.controls.password.touched">
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>
+
+    <button ion-button block type="submit" [disabled]="!registerForm.valid">
+      Create an Account
+    </button>
+  </form>
+</ion-content>
