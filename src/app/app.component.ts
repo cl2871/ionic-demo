@@ -12,7 +12,9 @@ import { firebaseConfig } from './credentials';
   templateUrl: 'app.html'
 })
 export class MyApp {
+  
   rootPage: any;
+  authObserver: firebase.Unsubscribe;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -24,19 +26,21 @@ export class MyApp {
       
       firebase.initializeApp(firebaseConfig);
 
-      // onAuthStateChanged checks localStorage for user object
-      // reroute user depending on if they are logged in or not
-      const unsubscribe = firebase.auth().onAuthStateChanged(
+      // Reroute user depending on auth state changes (login/logout events)
+      this.authObserver = firebase.auth().onAuthStateChanged(
         user => {
           if (!user) {
             this.rootPage = 'LoginPage';
-            unsubscribe();
           } else {
             this.rootPage = TabsPage;
-            unsubscribe();
           }
         }
       )
     });
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from firebase user's auth state changes
+    this.authObserver();
   }
 }

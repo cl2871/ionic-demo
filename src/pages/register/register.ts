@@ -9,7 +9,6 @@ import {
 } from "ionic-angular";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AuthProvider } from "../../providers/auth/auth";
-import { TabsPage } from "../tabs/tabs";
 
 @IonicPage()
 @Component({
@@ -61,7 +60,8 @@ export class RegisterPage implements OnInit {
       this.authProvider.register(email, password).then(
         userCredentials => {
           this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot(TabsPage);
+            //this.navCtrl.setRoot(TabsPage);
+            console.log('Successfully registered.');
           });
         },
         error => {

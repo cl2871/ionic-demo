@@ -7,7 +7,6 @@ import {
   NavController
 } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
-import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -34,8 +33,8 @@ export class HomePage {
     this.authProvider.logout().then(
       res => {
         this.loading.dismiss().then(() => {
-          // TODO: update the auth routing
-          this.navCtrl.setRoot(LoginPage);
+          //this.navCtrl.setRoot(LoginPage);
+          console.log('Logged out successfully.');
         });
       },
       err => {

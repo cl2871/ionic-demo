@@ -10,14 +10,6 @@ import {
 } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
-import { TabsPage } from '../tabs/tabs';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -73,7 +65,8 @@ export class LoginPage implements OnInit{
       this.authProvider.login(email, password).then(
         userCredentials => {
           this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot(TabsPage);
+            //this.navCtrl.setRoot(TabsPage);
+            console.log('Sucessfully logged in.');
           });
         },
         error => {
